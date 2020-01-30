@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+const app = require("../app");
+const http = require("http");
+
+require('dotenv').config();
+
+var server = http.createServer(app);
+
+server.listen(process.env.PORT || 1337);
+
+server.on("listening", listeningHandler);
+
+server.on("error", errorHandler)
+
+function errorHandler(err){
+    console.error('', err);
+    process.exit(1);
+}
+function listeningHandler(){
+    console.info('Server is running on port', server.address().port);
+}
